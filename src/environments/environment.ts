@@ -4,5 +4,11 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  aws: {
+    accessKeyId: 'AKIATHGZBEJMMY44HIP2',
+    secretAccessKey: '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',
+    region: 'us-east-2',
+    bucket: 'awsunibe'
+  },
 };
