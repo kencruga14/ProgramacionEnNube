@@ -3,11 +3,12 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
-                    objects {{objects | json}}
+                    <!-- objects {{objects | json}} -->
                     <ul>
                         <li *ngFor="let object of objects">
-                          <strong>{{ object.Key }}</strong>
-                          <p>{{ object.Size }}</p>
+                          <strong>{{ object.Key }}</strong> ||  
+                          <strong>{{ object.Size }}</strong>  ||  
+                          <strong>{{ object.LastModified | date:'dd/mm/yyyy'}}</strong>
                         </li>
                       </ul>
                 </div>

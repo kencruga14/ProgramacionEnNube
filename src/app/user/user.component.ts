@@ -20,17 +20,15 @@ export class UserComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     const params = {
       Bucket: environment.aws.bucket,
     };
 
-    this.objects = from(this.s3.listObjectsV2(params)).pipe(
-      map((response) => {
-        console.log("ASDSA: " + JSON.stringify(response))
-      }),
-    );
-   console.log("size: " + JSON.stringify(this.objects))
+    this.s3.listObjectsV2(params).then(response => {
+      console.log("ASDSA then: " + JSON.stringify(response.Contents));
+      this.objects = response.Contents;
+    });
   }
 
 }
