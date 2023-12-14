@@ -8,11 +8,10 @@ import { AppRoutingModule } from './app.routing';
 import { NavbarModule } from './shared/navbar/navbar.module';
 import { FooterModule } from './shared/footer/footer.module';
 import { SidebarModule } from './sidebar/sidebar.module';
-
+import { S3 } from '@aws-sdk/client-s3';
 import { AppComponent } from './app.component';
-
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-
+import { AwsService } from './services/aws.service';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -23,13 +22,13 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     FooterModule,
     SidebarModule,
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent
   ],
-  providers: [],
+  providers: [AwsService,S3],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

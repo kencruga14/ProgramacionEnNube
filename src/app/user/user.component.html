@@ -3,15 +3,15 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="header">
-                        <input type="file" id="imagen" />
-                        <button (click)="subirImagen()">Subir imagen</button> 
-                        <h5>Show Password</h5>
-                    </div>
-                    img1: <br><img src="data:image/jpeg;base64,{{ imageUrl }}" alt="Image from S3" />
+                    objects {{objects | json}}
+                    <ul>
+                        <li *ngFor="let object of objects">
+                          <strong>{{ object.Key }}</strong>
+                          <p>{{ object.Size }}</p>
+                        </li>
+                      </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

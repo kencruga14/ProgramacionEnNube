@@ -7,6 +7,8 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { UserComponent } from '../../user/user.component';
 import {CheckboxModule} from 'primeng/checkbox';
 import {PasswordModule} from 'primeng/password';
+import { AwsService } from 'app/services/aws.service';
+import { S3 } from '@aws-sdk/client-s3';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import {PasswordModule} from 'primeng/password';
   ],
   declarations: [
     UserComponent,
-  ]
+  ],
+  providers: [AwsService,S3],
+
 })
 
 export class AdminLayoutModule {}
