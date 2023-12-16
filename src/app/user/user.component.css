@@ -1,0 +1,12 @@
+.full-image-modal {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  full-image-modal p-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+  }

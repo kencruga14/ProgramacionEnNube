@@ -5,6 +5,8 @@
 
 export const environment = {
   production: false,
+  // urlBackend: 'http://18.189.168.143:3000/',
+ urlBackend:'http://localhost:3000/',
   aws: {
     accessKeyId: 'AKIATHGZBEJMMY44HIP2',
     secretAccessKey: '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',

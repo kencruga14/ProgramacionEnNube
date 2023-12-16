@@ -1,22 +1,91 @@
-<div class="main-content" >
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card">
-                    
-                    img1: <br><img src="data:image/jpeg;base64,{{ imageUrl }}" alt="Image from S3" />
-                    <ul>
-                        <li *ngFor="let object of objects">
-                          <strong>{{ object.Key }}</strong> ||  
-                          <strong>{{ object.Size }}</strong>  ||  
-                          <strong>{{ object.LastModified | date:'dd/mm/yyyy'}}</strong>
-                        </li>
-                      </ul>
-                </div>
-
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <p-table
+            #dt
+            [value]="archivos"
+            [rows]="10"
+            [paginator]="true"
+            [globalFilterFields]="['key']"
+            [tableStyle]="{ 'min-width': '75rem' }"
+            [rowHover]="true"
+            dataKey="id"
+            currentPageReportTemplate="Muestra {first} de {last} de un total de {totalRecords} registros"
+            [showCurrentPageReport]="true"
+          >
+            <ng-template pTemplate="caption">
+              <div class="flex align-items-rigth justify-content-between">
                 <input type="file" id="archivo" />
-                <button (click)="subirArchivo()">Subir imagen</button> 
-            </div>
+                <button
+                  pButton
+                  type="button"
+                  label="Subir Archivo"
+                  class="p-button-success"
+                  (click)="cargarArchivo()"
+                ></button>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="min-width: 15rem">Nombre</th>
+                <th>Formato</th>
+                <th pSortableColumn="LastModified">
+                  Fecha <p-sortIcon field="LastModified"></p-sortIcon>
+                </th>
+                <th pSortableColumn="Size" style="min-width: 10rem">
+                  Tamaño <p-sortIcon field="Size"></p-sortIcon>
+                </th>
+                <th>Opciones</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-file>
+              <tr>
+                <td>{{ file.Key }}</td>
+                <td>jpg</td>
+                <td>{{ file.LastModified | date : "dd/MM/yyyy, HH:mm a" }}</td>
+                <td>{{ file.Size }} Kb</td>
+                <td>
+                  <button
+                    pButton
+                    pRipple
+                    icon="pi pi-eye"
+                    class="p-button-rounded p-button-info mr-2"
+                    (click)="obtenerArchivo(file.Key)"
+                    pTooltip="Visualizar Archivo"
+                    tooltipPosition="top"
+                    style="margin-right: 5px"
+                  ></button>
+                  <button
+                    pButton
+                    pRipple
+                    icon="pi pi-download"
+                    class="p-button-rounded p-button-success"
+                    (click)="descargarArchivo(file.Key)"
+                    pTooltip="Descargar Archivo"
+                    tooltipPosition="top"
+                  ></button>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+              <div class="flex align-items-center justify-content-between">
+                In total there are
+                {{ products ? products.length : 0 }} products.
+              </div>
+            </ng-template>
+          </p-table>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+
+<p-dialog
+  [(visible)]="modalImage"
+  [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+  [styleClass]="'full-image-modal'"
+>
+  <p-image [src]="archivo" alt="Image" width="500" [preview]="true"></p-image>
+</p-dialog>
