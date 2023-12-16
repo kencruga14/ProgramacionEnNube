@@ -43,7 +43,7 @@
             <ng-template pTemplate="body" let-file>
               <tr>
                 <td>{{ file.Key }}</td>
-                <td>jpg</td>
+                <td>{{getExtension(file.Key)}}</td>
                 <td>{{ file.LastModified | date : "dd/MM/yyyy, HH:mm a" }}</td>
                 <td>{{ file.Size }} Kb</td>
                 <td>

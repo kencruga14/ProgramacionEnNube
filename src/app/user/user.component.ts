@@ -76,4 +76,8 @@ export class UserComponent implements OnInit {
       console.log("error al descargar el archivo: " + err.error);
     })
   }
+
+   getExtension(filename) {
+    return filename.split(".")[1];
+  }
 }
